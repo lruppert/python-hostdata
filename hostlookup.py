@@ -25,14 +25,14 @@ tstamp = sys.argv[3]
 #
 # This parses the event timestamp into something we can use
 #
-def parseISODate (dstamp,tstamp) :
+def parse_ISO_date (dstamp,tstamp) :
     isodate = datetime.strptime(dstamp+" "+tstamp,"%Y-%m-%d %H:%M:%S")
     return isodate
                 
 #
 # Now the action begins
 #
-isodate = parseISODate(dstamp,tstamp)
+isodate = parse_ISO_date(dstamp,tstamp)
 hl = hostdata.HostLookup()
 resultHost = hl.lookup(ip,isodate)
 if (resultHost):
