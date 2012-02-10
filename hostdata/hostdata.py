@@ -76,7 +76,7 @@ class HostLookup :
     methods = dict()
     
     def __init__ (self):
-        self.pm = PluginManager.PluginManager(config)
+        self.pm = PluginManager.LookupPluginManager(config)
         ## Subnet-specific values
         self.hrconfig = csv.reader(open("/etc/hostdata/hostlookup.tab","r"), delimiter='\t')
 

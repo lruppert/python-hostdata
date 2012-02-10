@@ -2,12 +2,12 @@
 # Author: Lou Ruppert <himself@louruppert.com>
 #
 
-from hostdata.PluginManager import Plugin
+from hostdata.PluginManager import LookupPlugin
 
 #
 # This class serves as the example as well as a useful endpoint to searches
 # or a means of suppressing them.
-class Dummy(Plugin):
+class Dummy(LookupPlugin):
     def get_hwaddr(self,host,eventtime):
 	return None
 

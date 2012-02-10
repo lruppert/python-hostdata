@@ -7,7 +7,10 @@
 
 import sys,os
 
-class Plugin(object):
+#
+# This gets subclassed in order to make an easy way for us to find the plugins
+# and in order to set sensible defaults.
+class LookupPlugin(object):
     enable = True
     
     def get_hwaddr(self, hostobj, eventtime):
@@ -21,7 +24,9 @@ class Plugin(object):
 
 
 
-class PluginManager:
+# This manages the locating, loading, load/no-load decision-making, and 
+# instantiation of the lookup plugins.
+class LookupPluginManager:
     __instances = []
     
     def __init_plugin(self, plugin):
@@ -39,7 +44,7 @@ class PluginManager:
         for file in os.listdir(hdconfig.get("Plugins","plugins_dir")):
             pl = __import__(os.path.splitext(file)[0], None, None,  [''])
             
-        for plugin in Plugin.__subclasses__():
+        for plugin in LookupPlugin.__subclasses__():
             self.__init_plugin(plugin)
             
     def get_plugin_count(self):
@@ -52,4 +57,3 @@ class PluginManager:
             if modname == plugin_name.replace(' ', ''):
                 return module
             
-        
