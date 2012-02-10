@@ -35,19 +35,22 @@ def parseISODate (dstamp,tstamp) :
 isodate = parseISODate(dstamp,tstamp)
 hl = hostdata.HostLookup()
 resultHost = hl.lookup(ip,isodate)
+if (resultHost):
+    print ""
+else:
+    print "\nNo results found for %s %s %s" % (ip,dstamp,tstamp)
+if (resultHost.ipv4addr):
+    print "IPV4: %s" % resultHost.ipv4addr
+if (resultHost.ipv6addr):
+    print "IPV6: %s" % resultHost.ipv6addr
+  
+if (resultHost.hwaddr):
+    print "Ethernet: %s" % resultHost.hwaddr
+else:
+    print "Ethernet: NONE FOUND"
+print "Activity date: %s" % isodate.strftime("%Y-%m-%d %H:%M:%S")
+if (resultHost.user):
+    print "Primary user: %s" % str(resultHost.user)
 
-fmtipv4addr = str(ip)+" [dynamic]"
-if (not resultHost.isDynamic()) :
-    fmtipv4addr = str(resultHost.ipv4addr)+" [static ]"
-print "\nDATA: "+isodate.strftime("%Y-%m-%d-%H:%M")+" "+fmtipv4addr
-print "HDATA: [%s %s]" % (str(resultHost.hwaddr),str(resultHost.user))
-
-if (resultHost.admin != None ) :
-    print "HOSTREG: Admin contact: "+str(resultHost.admin)
-if (resultHost.primary_hostname != None and resultHost.primary_hostname != '') :
-    print "HOSTREG: Hostname: "+str(resultHost.primary_hostname)
-if (resultHost.description != None and resultHost.description != '' 
-    and resultHost.description != 'Quarantine stub') :
-    print "HOSTREG: Description: "+str(resultHost.description)
-
-print resultHost.getInfo("quarproc")
+if (resultHost.admin) :
+    print "Admin contact: "+str(resultHost.admin)
