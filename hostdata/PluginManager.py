@@ -14,13 +14,13 @@ class LookupPlugin(object):
     enable = True
     
     def get_hwaddr(self, hostobj, eventtime):
-        return None
+        return {}
     
     def get_owner(self, hostobj, eventtime):
-        return None
+        return {}
     
     def get_admin(self, hostobj, eventtime):
-        return None
+        return {}
 
 
 

@@ -9,11 +9,11 @@ from hostdata.PluginManager import LookupPlugin
 # or a means of suppressing them.
 class Test(LookupPlugin):
     def get_hwaddr(self,host,eventtime):
-	return "deadbeefcafe"
+	return { "hwaddr" : "deadbeefcafe"}
 
     def get_user(self,host,eventtime):
-	return "testuser"
+	return { "user" : "testuser"}
     
     def get_admin(self,host,eventtime):
-	return "testadmn"
+	return { "admin" : "testadmn"}
     
